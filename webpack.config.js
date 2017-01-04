@@ -15,14 +15,20 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.js$/,   loader: 'babel',  exclude: /node_modules/,    query: { presets: ['es2015'] }
-      }, 
-      {  
-         test: /\.ts$/,   loader: 'ts-loader' ,  exclude: /node_modules/
+        test: /\.js$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['es2015'] }
+      },
+      {
+        test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/
+      },
+      { 
+        test: /\.css$/, loader: 'style-loader!css-loader' 
+      },
+      { 
+        test: /\.styl$/, loader: 'style-loader!css-loader!stylus-loader'
       }
     ]
   },
   resolve: {// 现在你require文件的时候可以直接使用require('file')，不用使用require('file.coffee')
-    extensions: ['', '.js', '.ts','.json', '.coffee']
+    extensions: ['', '.js', '.ts', '.json', '.coffee','.styl']
   }
 };
