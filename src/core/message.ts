@@ -8,6 +8,7 @@ class Message {
         this.name = name;
         this.listeners = new Map()
     }
+    //消息发送,找到key值对应的监听器,依次调用,并传递参数
     send(key, ...args) {
         if (key != "LOVE-LOG") {
             message.send("LOVE-LOG", `推送消息： ${key},参数为：`, args)
@@ -20,6 +21,9 @@ class Message {
         }
 
     }
+    /**
+     * 建立消息监听器,key为监听的消息类型, callback为监听到消息后的实际动作
+     */
     listen(key, callback) {
         message.send("LOVE-LOG", `监听注册： ${key}`)
         if (!this.listeners.has(key)) {
@@ -63,28 +67,5 @@ class Hook extends Message {
 //创建一个消息实例,作为全局消息发送总线
 const message = new Message("MESSAGE-BUS");
 
-//创建love对象,并将消息总线添加到属性中
-let love : any = {
-    //消息总线实例,放入love命名空间下,方便定位访问
-    msgbus: message,
-
-    //快捷方法,通过消息总线发送消息
-    send(key, ...args) {
-        message.send(key, ...args);
-    },
-    //快捷方法,监听消息总线的消息
-    listen(key, callback) {
-        message.listen(key, callback);
-    },
-
-    components:{}
-
-    
-}
-//创建lovejs的总命名空间,放入window下,并防止篡改 
-Object.defineProperty((<any>window), "love", {
-    writable: false,
-    value: love
-})
 export default message;
-export { Message, Hook, love };
+export { Message, Hook };

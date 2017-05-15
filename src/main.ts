@@ -1,21 +1,53 @@
-import msg, {Message,love}  from './core/message'
+import msg, { Message } from './core/message'
+import love from './core/context'
+import utils from './core/utils'
 import Component from './ui/component'
-import  './ui/layout'
+import './ui/layout'
+import './ui/form/text'
 import './core/logger'
 import './style/loveui'
-msg.listen("message.test",function(name){
-   console.log(`${name} i am ok!`)
+import './style/designer'
+msg.listen("message.test", function (name) {
+    console.log(`${name} i am ok!`)
 })
-msg.send("message.test","czw");
+msg.send("message.test", "czw");
 
 let uiConfig = {
-    view : "layout",//视图类型 [Layout, Table, Tree, Tab 等等]
-    width:0, // 宽度,  默认填充 100%,
-    height:0, //高度
-    type:"", //布局方式,
-    border:1, //边框
-    css:"cssName", //生成样式名称,
-    rows:[
+    view: "layout",//视图类型 [Layout, Table, Tree, Tab 等等]
+    width: 0, // 宽度,  默认填充 100%,
+    border: 1, //边框
+    css: "", //生成样式名称,
+    contianer: "app",
+    autoSize:true,
+    elements: [
+        {
+            view: "layout",
+            css: "header",
+            height: 50, //高度
+        },
+        {
+            css: "body",
+            view: "layout",
+            type: "cols",
+            elements: [
+                {
+                    view: "layout",
+                    css: "left-content",
+                    width: 250,
+                    elements:[
+                       {
+                            view:"template",
+                            template:"widgets",
+                            height:25
+                        }
+                    ]
+
+                },
+                {
+                    view: "layout"
+                }
+            ]
+        }
     ]
 }
-love.ui("app", uiConfig);
+love.ui(uiConfig, "app");

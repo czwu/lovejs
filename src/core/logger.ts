@@ -1,5 +1,5 @@
 import msg from './message'
-
+import {MSG} from './constant'
 
 const logger = {
     type: {
@@ -20,12 +20,12 @@ const logger = {
 }
 
 //特殊消息，内部KEY值， 接收到 LOVE-LOG 的消息，将输出日志
-msg.listen("LOVE-LOG", function (...args) {
+msg.listen(MSG.SYSTEM_LOG, function (...args) {
     logger.log.apply(logger, args)
 })
 
 //特殊消息，内部KEY值， 接收到 LOVE-ERROR 的消息，将抛出异常
-msg.listen("LOVE-ERROR", function (errorMsg) {
+msg.listen(MSG.SYSTEM_ERROR, function (errorMsg) {
     throw new Error(errorMsg);
 })
 
