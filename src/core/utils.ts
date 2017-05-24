@@ -50,6 +50,11 @@ export default {
         return this.components[viewId];
     },
 
+    compile(templete, context){
+        let fn = new Function("context","return `"+templete+"`");
+        return fn(context);
+    },
+
     defaults:defaults
 
 }

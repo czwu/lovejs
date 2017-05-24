@@ -1,8 +1,6 @@
 import View from './../view'
-import html from './../html'
+import domTools from './../domTools'
 class Text extends View {
-
-	name : string = "text";
 
 	defaults: any = {
 
@@ -16,17 +14,14 @@ class Text extends View {
 		super(config);
 	};
 
-
-	$render() {
-		super.$render();
-		let textNode = html.create("input", { type: "text" });
+	render() {
+		super.render();
+		let textNode = domTools.create("input", { type: "text" });
 		this.dom.appendChild(textNode)
 	};
 
 
-
-
 }
 
-Text.UIReg("text", Text);
+Text.register("text");
 export default View;

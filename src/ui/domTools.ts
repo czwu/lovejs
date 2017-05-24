@@ -14,13 +14,18 @@ const html = {
 		return node;
 	},
 
-	offset : {
+	offset: {
 
 	},
 
-	
+
+	bindEvent(target: HTMLElement, eventType: string, callback, context?: any) {
+		context = context || {};
+		if (target.addEventListener) {
+			target.addEventListener(eventType, callback, !!context.capture);
+		} 
+	}
 
 
 };
-
 export default html;

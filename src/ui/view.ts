@@ -1,12 +1,20 @@
 import Component from './component'
-import html from './html'
 class View extends Component {
+
+
     defaults: any = {
         _css: "ui-view"
     }
 
 
-	$beforeRender(){
+    constructor(config){
+        super(config);
+        this.hooks.on("$onBeforeRender",()=>{
+            this._beforeRender();
+        });
+    }
+
+	_beforeRender(){
 		let config = this.config;
         config.css = config.css || "";
 		if(config.autoSize){
@@ -18,38 +26,26 @@ class View extends Component {
 	}
 
 
-    $render() {
-        super.$render();
+    render() {
+        super.render();
     }
 }
+View.register("view");
 
-View.UIReg("view", View);
+
+
 /**
  * html 组件, 如果您所需的实现的功能比较复杂,框架中没有你所想要的组件,你可使用该组件,自己组装您的html代码
  * 使用说明: tempate参数中,描述你构建的html结构代码
  * {view:"tempate", tempalte:"<div>....</div>"}
  */
 class Template extends View {
-    $render() {
-        super.$render();
+    render() {
+        super.render();
         this.dom.innerHTML= this.config.template
     }
 }
-View.UIReg("template", Template);
-
-
-/**
- * label 组件
- * 使用说明: tempate参数中,描述你构建的html结构代码
- * {view:"Label", Label:"User Name"}
- */
-class Label extends View {
-    $render() {
-        let label = this.config.label;
-        this.dom.html(`<label>${label}</label>`);
-    }
-}
-View.UIReg("label", Label);
+Template.register("template");
 
 
 export default View;

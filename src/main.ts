@@ -3,7 +3,9 @@ import love from './core/context'
 import utils from './core/utils'
 import Component from './ui/component'
 import './ui/layout'
-import './ui/form/text'
+import './ui/basic/button'
+import './ui/basic/label'
+import './ui/basic/text'
 import './core/logger'
 import './style/loveui'
 import './style/designer'
@@ -18,7 +20,7 @@ let uiConfig = {
     border: 1, //边框
     css: "", //生成样式名称,
     contianer: "app",
-    autoSize:true,
+    autoSize: true,
     elements: [
         {
             view: "layout",
@@ -34,17 +36,22 @@ let uiConfig = {
                     view: "layout",
                     css: "left-content",
                     width: 250,
-                    elements:[
-                       {
-                            view:"template",
-                            template:"widgets",
-                            height:25
+                    elements: [
+                        {
+                            view: "template",
+                            template: "widgets",
+                            height: 25
                         }
                     ]
-
                 },
                 {
-                    view: "layout"
+                    view: "layout",
+                    elements: [
+                        {
+                            view:"button",
+                            label:"button1"
+                        }
+                    ]
                 }
             ]
         }
