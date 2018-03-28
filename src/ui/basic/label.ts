@@ -9,7 +9,7 @@ import View from '../view'
 class Label extends View {
     render() {
         let label = this.config.label;
-        this.dom.html(`<label>${label}</label>`);
+        this.dom.innerHTML =(`<label>${label}</label>`);
     }
 }
 Label.register("label");

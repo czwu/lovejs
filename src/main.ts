@@ -6,6 +6,7 @@ import './ui/layout'
 import './ui/basic/button'
 import './ui/basic/label'
 import './ui/basic/text'
+import './ui/basic/list'
 import './core/logger'
 import './style/loveui'
 import './style/designer'
@@ -41,6 +42,28 @@ let uiConfig = {
                             view: "template",
                             template: "widgets",
                             height: 25
+                        }, {
+                            view: "list",
+                            template: "${name}",
+                            item: {
+                                width: 80, height: 80
+                            },
+                            data: [
+                                {
+                                    name: "text"
+                                },
+                                {
+                                    name: "label"
+                                },
+                                {
+                                    name: "template"
+                                },
+                                {
+                                    name: "button"
+                                }, {
+                                    name: "layout"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -48,8 +71,12 @@ let uiConfig = {
                     view: "layout",
                     elements: [
                         {
-                            view:"button",
-                            label:"button1"
+                            view: "button",
+                            label: "button1",
+                            icon: "add",
+
+                            click() {
+                            }
                         }
                     ]
                 }

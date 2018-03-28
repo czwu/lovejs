@@ -24,6 +24,8 @@ class Component {
 
     id: string;
 
+    css:string;
+
     name: string = "component";
 
     hooks: Hook;
@@ -62,7 +64,8 @@ class Component {
 
         let conf = this.config;
         this.hooks.emit("$onBeforeRender");
-        let cssName = `ui ${conf._css || ''} ${conf.css || ''}`;
+        
+        let cssName = `ui ${this.css || ''} ${conf.css || ''}`;
         this.dom = domTools.create("div", { id: this.id, class: cssName, style: this.inlineStyle });
     }
 

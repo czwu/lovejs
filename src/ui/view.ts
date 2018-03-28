@@ -1,18 +1,19 @@
 import Component from './component'
 class View extends Component {
 
+    css = "view";
+
 
     defaults: any = {
-        _css: "ui-view"
+
     }
-
-
     constructor(config){
         super(config);
         this.hooks.on("$onBeforeRender",()=>{
             this._beforeRender();
         });
     }
+
 
 	_beforeRender(){
 		let config = this.config;
@@ -24,7 +25,6 @@ class View extends Component {
 		let size = config[config._sizeType]
 		this.inlineStyle+=`flex:${size ? 0 : 1} 1 ${size ? size+"px" : "auto"}`
 	}
-
 
     render() {
         super.render();

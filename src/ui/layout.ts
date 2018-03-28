@@ -2,6 +2,9 @@ import Component from './component'
 import msg from '../core/message'
 class Layout extends Component {
 
+
+    css = "layout";
+
 	defaults: any = {
 		type: "rows", //rows or cols 多行布局 或 多列布局
 
@@ -11,9 +14,6 @@ class Layout extends Component {
 
 		//wrap: true, 
 		autoSize: false, // 尺寸自适应模式, false:自适应父级大小, true:根据容器内容自适应大小
-
-		_css: "ui-layout ",
-
 		align: "left"//
 
 	};

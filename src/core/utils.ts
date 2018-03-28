@@ -50,8 +50,8 @@ export default {
         return this.components[viewId];
     },
 
-    compile(templete, context){
-        let fn = new Function("context","return `"+templete+"`");
+    compile(templete, context) : string{
+        let fn = typeof templete=="function" ? templete : new Function("context","with(context){return `"+templete+"`}");
         return fn(context);
     },
 

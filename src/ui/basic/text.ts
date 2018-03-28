@@ -2,12 +2,13 @@ import View from './../view'
 import domTools from './../domTools'
 class Text extends View {
 
+	css = "text"
+
 	defaults: any = {
 
 		// width: 100,  //宽度
 		// height :20, //高度
-        // icon : ""  //图标
-		_css: "text"
+		// icon : ""  //图标
 	};
 
 	constructor(config) {
@@ -25,3 +26,6 @@ class Text extends View {
 
 Text.register("text");
 export default View;
+
+
+
